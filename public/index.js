@@ -27,6 +27,7 @@ function presentBeers(beers){
   for(var beer of beers){
     var beerElement = makeBeerElement(beer);
     body.appendChild(beerElement);
+    body.appendChild(document.createElement("hr"));
   }
 }
 
