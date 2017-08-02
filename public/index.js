@@ -33,6 +33,7 @@ function presentBeers(beers){
 
 function makeBeerElement(beer){
   var beerDiv = document.createElement("div");
+  beerDiv.classList.add("beer-div");
 
   var title = document.createElement("h2");
   title.innerText = beer.name;
