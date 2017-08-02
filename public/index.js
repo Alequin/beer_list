@@ -44,9 +44,16 @@ function makeBeerElement(beer){
   image.classList.add("beer-image");
   image.src = beer.image_url;
 
+  var ingredientsTitle = document.createElement("h3");
+  ingredientsTitle.innerText = "Ingredients";
+
+  var ingredients = makeIngredientList(beer);
+
   beerDiv.appendChild(title);
   beerDiv.appendChild(details);
   beerDiv.appendChild(image);
+  beerDiv.appendChild(ingredientsTitle);
+  beerDiv.appendChild(ingredients);
   return beerDiv;
 }
 
@@ -70,11 +77,37 @@ function getBeerDetails(beer){
   return details;
 }
 
+function makeIngredientList(beer){
+
+  var ingredientsList = document.createElement("ul");
+
+  var hopsElement = makeIngredientListElement("Hops", beer.ingredients.hops);
+  ingredientsList.appendChild(hopsElement);
+
+  var maltElement = makeIngredientListElement("Malt", beer.ingredients.malt);
+  ingredientsList.appendChild(maltElement);
+
+  var yeastElement = makeListElement("Yeast: " + beer.ingredients.yeast);
+  ingredientsList.appendChild(yeastElement);
+
+  return ingredientsList;
+}
+
+function makeIngredientListElement(title, ingredients){
+  var text = title + ": ";
+  for(var ingredient of ingredients){
+    text += ingredient.name + ", ";
+  }
+  return makeListElement(text);
+}
+
 function makeListElement(text){
   var element = document.createElement("li");
   element.innerText = text;
   return element;
 }
+
+
 
 var app = function () {
   makeRequest("https://api.punkapi.com/v2/beers", onRequest);
