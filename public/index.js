@@ -32,19 +32,27 @@ function presentBeers(beers){
 }
 
 function makeBeerElement(beer){
-  var beerItem = document.createElement("ul");
+  var beerDiv = document.createElement("div");
 
   var title = document.createElement("h2");
   title.innerText = beer.name;
-  beerItem.appendChild(title);
+  beerDiv.appendChild(title);
+
+  beerDiv.appendChild(makeBeerList(beer));
+
+  return beerDiv;
+}
+
+function makeBeerList(beer){
+  var beerList = document.createElement("ul");
 
   var listElementsText = getBeerDetails(beer);
   for(var text of listElementsText){
     var element = makeListElement(text);
-    beerItem.appendChild(element);
+    beerList.appendChild(element);
   }
 
-  return beerItem;
+  return beerList;
 }
 
 function getBeerDetails(beer){
