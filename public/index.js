@@ -9,19 +9,19 @@ function makeRequest(url, callback){
   request.send();
 }
 
-var app = function () {
-  makeRequest("https://api.punkapi.com/v2/beers", function(){
-    if(this.status !== 200){
-      return;
-    }
+function onRequest(){
+  if(this.status !== 200){
+    return;
+  }
 
-    var jsonString = this.responseText;
-    beerArray = JSON.parse(jsonString);
+  var jsonString = this.responseText;
+  beerArray = JSON.parse(jsonString);
 
-    console.log(beerArray);
-  });
+  console.log(beerArray);
 }
 
-
+var app = function () {
+  makeRequest("https://api.punkapi.com/v2/beers", onRequest);
+}
 
 window.addEventListener('load', app);
