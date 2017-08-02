@@ -33,11 +33,7 @@ function presentBeers(beers){
 function makeBeerElement(beer){
   var beerItem = document.createElement("ul");
 
-  var listElementsText = [];
-  listElementsText.push("Name: " + beer.name);
-  listElementsText.push("Tag Line: " + beer.tagline);
-  listElementsText.push("Description: " + beer.description);
-  listElementsText.push("Tips: " + beer.brewers_tips);
+  var listElementsText = getBeerDetails(beer);
 
   for(var text of listElementsText){
     var element = makeListElement(text);
@@ -45,6 +41,15 @@ function makeBeerElement(beer){
   }
 
   return beerItem;
+}
+
+function getBeerDetails(beer){
+  var details = [];
+  details.push("Name: " + beer.name);
+  details.push("Tag Line: " + beer.tagline);
+  details.push("Description: " + beer.description);
+  details.push("Tips: " + beer.brewers_tips);
+  return details;
 }
 
 function makeListElement(text){
