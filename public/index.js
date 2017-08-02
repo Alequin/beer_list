@@ -36,10 +36,16 @@ function makeBeerElement(beer){
 
   var title = document.createElement("h2");
   title.innerText = beer.name;
+
+  var details = makeBeerList(beer);
+
+  var image = document.createElement("img");
+  image.classList.add("beer-image");
+  image.src = beer.image_url;
+
   beerDiv.appendChild(title);
-
-  beerDiv.appendChild(makeBeerList(beer));
-
+  beerDiv.appendChild(details);
+  beerDiv.appendChild(image);
   return beerDiv;
 }
 
